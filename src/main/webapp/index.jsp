@@ -1,3 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@page import="org.*"%>
+<%@page import="org.project.DAO.*"%>
+<%@page import="org.project.entities.*"%>
+<%@page import="java.util.*"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -96,23 +103,40 @@
 					href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
 			</div>
 		</header>
+		<%
+		List<Product> products = ProductDao.listProduct();
+		%>
 
 
 		<div class="products-catagories-area clearfix">
 			<div class="amado-pro-catagory clearfix">
+				<%
+				if (!products.isEmpty()) {
+					for (Product p : products) {
+				%>
 
 				<div class="single-products-catagory clearfix">
-					<a href="shop.jsp"> <img src="img/bg-img/1.jpg" alt="">
+					<a href="shop.jsp"> <img src="img/bg-img/<%=p.getImage()%>"
+						alt="">
 
 						<div class="hover-content">
 							<div class="line"></div>
-							<p>From $180</p>
-							<h4>Modern Chair</h4>
+							<p>
+								From $<%=p.getPrice()%></p>
+							<h4><%=p.getName()%></h4>
 						</div>
 					</a>
 				</div>
 
-				<div class="single-products-catagory clearfix">
+				<%
+				}
+				} else {
+				out.println("There is no proucts");
+				}
+				%>
+
+
+				<!-- <div class="single-products-catagory clearfix">
 					<a href="shop.jsp"> <img src="img/bg-img/2.jpg" alt="">
 
 						<div class="hover-content">
@@ -199,11 +223,13 @@
 						</div>
 					</a>
 				</div>
+			
+			
+-->
 			</div>
 		</div>
 
 	</div>
-
 
 	<section class="newsletter-area section-padding-100-0">
 		<div class="container">
@@ -270,12 +296,10 @@
 									<ul class="navbar-nav ml-auto">
 										<li class="nav-item active"><a class="nav-link"
 											href="index.jsp">Home</a></li>
-										<li class="nav-item"><a class="nav-link" href="shop.jsp">Shop</a>
-										</li>
+										<li class="nav-item"><a class="nav-link" href="shop.jsp">Shop</a></li>
 										<li class="nav-item"><a class="nav-link"
 											href="product-details.jsp">Product</a></li>
-										<li class="nav-item"><a class="nav-link" href="cart.jsp">Cart</a>
-										</li>
+										<li class="nav-item"><a class="nav-link" href="cart.jsp">Cart</a></li>
 										<li class="nav-item"><a class="nav-link"
 											href="checkout.jsp">Checkout</a></li>
 										<li class="nav-item"><a class="nav-link"
@@ -304,11 +328,11 @@
 	<script async
 		src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
 	<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+Â  window.dataLayer = window.dataLayer || [];
+Â  function gtag(){dataLayer.push(arguments);}
+Â  gtag('js', new Date());
 
-  gtag('config', 'UA-23581568-13');
+Â  gtag('config', 'UA-23581568-13');
 </script>
 	<script defer
 		src="https://static.cloudflareinsights.com/beacon.min.js/vb26e4fa9e5134444860be286fd8771851679335129114"
