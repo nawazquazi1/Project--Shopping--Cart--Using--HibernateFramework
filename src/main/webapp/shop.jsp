@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from preview.colorlib.com/theme/amado/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Apr 2023 19:45:36 GMT -->
 <head>
 <meta charset="UTF-8">
 <meta name="description" content="">

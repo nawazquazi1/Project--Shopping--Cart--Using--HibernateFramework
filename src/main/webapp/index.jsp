@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@page import="org.*"%>
 <%@page import="org.project.DAO.*"%>
 <%@page import="org.project.entities.*"%>
@@ -7,8 +5,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from preview.colorlib.com/theme/amado/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Apr 2023 19:45:22 GMT -->
 <head>
 <meta charset="UTF-8">
 <meta name="description" content="">
@@ -54,7 +50,7 @@
 		<div class="mobile-nav">
 
 			<div class="amado-navbar-brand">
-				<a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+				<a href="index.jsp"><img src="img/core-img/logo2.png" alt=""></a>
 			</div>
 
 			<div class="amado-navbar-toggler">
@@ -69,7 +65,7 @@
 			</div>
 
 			<div class="logo">
-				<a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+				<a href="index.jsp"><img src="img/core-img/logo2.png" alt=""></a>
 			</div>
 
 			<nav class="amado-nav">
@@ -104,6 +100,7 @@
 			</div>
 		</header>
 		<%
+		
 		List<Product> products = ProductDao.listProduct();
 		%>
 
@@ -328,11 +325,11 @@
 	<script async
 		src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
 	<script>
-Â  window.dataLayer = window.dataLayer || [];
-Â  function gtag(){dataLayer.push(arguments);}
-Â  gtag('js', new Date());
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-Â  gtag('config', 'UA-23581568-13');
+  gtag('config', 'UA-23581568-13');
 </script>
 	<script defer
 		src="https://static.cloudflareinsights.com/beacon.min.js/vb26e4fa9e5134444860be286fd8771851679335129114"
@@ -340,6 +337,4 @@
 		data-cf-beacon='{"rayId":"7b3c87d908238ad9","version":"2023.3.0","b":1,"token":"cd0b4b3a733644fc843ef0b185f98241","si":100}'
 		crossorigin="anonymous"></script>
 </body>
-
-<!-- Mirrored from preview.colorlib.com/theme/amado/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Apr 2023 19:45:32 GMT -->
 </html>

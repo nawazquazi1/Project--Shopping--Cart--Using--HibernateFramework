@@ -20,7 +20,7 @@ public class Product {
 	private Double price;
 	@Column(name = "image")
 	private String image;
-	@Column(name = "about")
+	@Column(name = "description")
 	private String about;
 
 	public Product(int id, String name, String category, Double price, String image, String about) {
