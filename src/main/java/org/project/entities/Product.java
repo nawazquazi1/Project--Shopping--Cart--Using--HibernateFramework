@@ -12,14 +12,19 @@ public class Product {
 	@Id
 	@Column(name = "id")
 	private int id;
+	
 	@Column(name = "name")
 	private String name;
+	
 	@Column(name = "category")
 	private String category;
+	
 	@Column(name = "price")
 	private Double price;
+	
 	@Column(name = "image")
 	private String image;
+	
 	@Column(name = "description")
 	private String about;
 

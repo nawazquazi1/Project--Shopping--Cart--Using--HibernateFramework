@@ -20,7 +20,7 @@ public class ProductDao {
 	}
 
 	public static List<Product> listProduct() {
-		Session session = factory.getCurrentSession();
+		Session session = factory.openSession();
 		session.beginTransaction();
 		List<Product> product = session.createQuery("from products").getResultList();
 		// session.getTransaction().commit();

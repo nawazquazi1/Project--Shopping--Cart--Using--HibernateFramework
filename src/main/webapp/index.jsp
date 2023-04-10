@@ -3,6 +3,13 @@
 <%@page import="org.project.entities.*"%>
 <%@page import="java.util.*"%>
 
+<%
+User auth = (User) request.getSession().getAttribute("auth");
+if (auth == null) {
+	response.sendRedirect("login.jsp");
+}
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +20,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
-<title>Amado - Furniture Ecommerce Template | Home</title>
+<title>Home</title>
 
 <link rel="icon" href="img/core-img/favicon.ico">
 
@@ -47,7 +54,7 @@
 
 	<div class="main-content-wrapper d-flex clearfix">
 
-		<div class="mobile-nav">
+		<div class="mobile-nav " style="">
 
 			<div class="amado-navbar-brand">
 				<a href="index.jsp"><img src="img/core-img/logo2.png" alt=""></a>
@@ -99,8 +106,8 @@
 					href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
 			</div>
 		</header>
+
 		<%
-		
 		List<Product> products = ProductDao.listProduct();
 		%>
 
@@ -125,15 +132,16 @@
 					</a>
 				</div>
 
+
 				<%
 				}
 				} else {
 				out.println("There is no proucts");
 				}
 				%>
+			</div>
 
-
-				<!-- <div class="single-products-catagory clearfix">
+			<!-- <div class="single-products-catagory clearfix">
 					<a href="shop.jsp"> <img src="img/bg-img/2.jpg" alt="">
 
 						<div class="hover-content">
@@ -223,10 +231,9 @@
 			
 			
 -->
-			</div>
 		</div>
-
 	</div>
+
 
 	<section class="newsletter-area section-padding-100-0">
 		<div class="container">
