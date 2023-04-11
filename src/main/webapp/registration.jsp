@@ -1,3 +1,10 @@
+<%@page import="org.*"%>
+<%@page import="org.project.DAO.*"%>
+<%@page import="org.project.entities.*"%>
+<%@page import="java.util.*"%>
+<%
+User auth = (User) request.getSession().getAttribute("auth");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +36,7 @@
 						<h2 class="form-title">Sign up</h2>
 
 						<form method="post"
-							action="${pageContext.request.contextPath}/registra?page=Register"
+							action="registration"
 							class="register-form" id="register-form">
 							<div class="form-group">
 								<label for="name"><i
@@ -65,7 +72,6 @@
 									required="required">Terms of service</a></label>
 							</div>
 							<div class="form-group form-button">
-								<input type="hidden" name="form" value="addUserOperation">
 								<input type="submit" name="signup" id="signup"
 									class="form-submit" value="Register" />
 							</div>

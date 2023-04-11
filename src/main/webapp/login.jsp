@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@page import="org.*"%>
+<%@page import="org.project.DAO.*"%>
+<%@page import="org.project.entities.*"%>
+<%@page import="java.util.*"%>
+<%
+User auth = (User) request.getSession().getAttribute("auth");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,9 +42,8 @@
 
 					<div class="signin-form">
 						<h2 class="form-title">Sign up</h2>
-						<form method="post"
-							action="${pageContext.request.contextPath}/user-login"
-							class="register-form" id="login-form">
+						<form method="post" action="LoginControlle" class="register-form"
+							id="login-form">
 							<div class="form-group">
 								<label for="username"><i
 									class="zmdi zmdi-account material-icons-name"></i></label> <input

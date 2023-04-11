@@ -1,6 +1,14 @@
+<%@page import="org.*"%>
 <%@page import="org.project.DAO.*"%>
 <%@page import="org.project.entities.*"%>
 <%@page import="java.util.*"%>
+<%
+User auth = (User) request.getSession().getAttribute("auth");
+ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
+if (cart_list != null) {
+	request.setAttribute("cart_list", cart_list);
+}
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,555 +29,200 @@
 </head>
 <body>
 
-	<div class="search-wrapper section-padding-100">
-		<div class="search-close">
-			<i class="fa fa-close" aria-hidden="true"></i>
-		</div>
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="search-content">
-						<form action="#" method="get">
-							<input type="search" name="search" id="search"
-								placeholder="Type your keyword...">
-							<button type="submit">
-								<img src="img/core-img/search.png" alt="">
-							</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<%@include file="/includes/navbar.jsp"%>
 
 
-	<div class="main-content-wrapper d-flex clearfix">
+	<div class="shop_sidebar_area">
 
-		<div class="mobile-nav">
+		<div class="widget catagory mb-50">
 
-			<div class="amado-navbar-brand">
-				<a href="index.jsp"><img src="img/core-img/logo.png" alt=""></a>
-			</div>
+			<h6 class="widget-title mb-30">Catagories</h6>
 
-			<div class="amado-navbar-toggler">
-				<span></span><span></span><span></span>
-			</div>
-		</div>
-
-		<header class="header-area clearfix">
-
-			<div class="nav-close">
-				<i class="fa fa-close" aria-hidden="true"></i>
-			</div>
-
-			<div class="logo">
-				<a href="index.jsp"><img src="img/core-img/logo.png" alt=""></a>
-			</div>
-
-			<nav class="amado-nav">
+			<div class="catagories-menu">
 				<ul>
-					<li><a href="index.jsp">Home</a></li>
-					<li><a href="shop.jsp">Shop</a></li>
-					<li class="active"><a href="product-details.jsp">Product</a></li>
-					<li><a href="cart.jsp">Cart</a></li>
-					<li><a href="checkout.jsp">Checkout</a></li>
-					<li><a href="profile.jsp">Profile</a></li>
+					<li class="active"><a href="#">Chairs</a></li>
+					<li><a href="#">Beds</a></li>
+					<li><a href="#">Accesories</a></li>
+					<li><a href="#">Furniture</a></li>
+					<li><a href="#">Home Deco</a></li>
+					<li><a href="#">Dressings</a></li>
+					<li><a href="#">Tables</a></li>
 				</ul>
-			</nav>
-
-			<div class="amado-btn-group mt-30 mb-100">
-				<a href="#" class="btn amado-btn mb-15">%Discount%</a> <a href="#"
-					class="btn amado-btn active">New this week</a>
 			</div>
+		</div>
 
-			<div class="cart-fav-search mb-100">
-				<a href="cart.jsp" class="cart-nav"><img
-					src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a> <a
-					href="#" class="fav-nav"><img src="img/core-img/favorites.png"
-					alt=""> Favourite</a> <a href="#" class="search-nav"><img
-					src="img/core-img/search.png" alt=""> Search</a>
-			</div>
+		<div class="widget brands mb-50">
 
-			<div class="social-info d-flex justify-content-between">
-				<a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a> <a
-					href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a> <a
-					href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a
-					href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-			</div>
-		</header>
+			<h6 class="widget-title mb-30">Brands</h6>
+			<div class="widget-desc">
 
-		<div class="shop_sidebar_area">
-
-			<div class="widget catagory mb-50">
-
-				<h6 class="widget-title mb-30">Catagories</h6>
-
-				<div class="catagories-menu">
-					<ul>
-						<li class="active"><a href="#">Chairs</a></li>
-						<li><a href="#">Beds</a></li>
-						<li><a href="#">Accesories</a></li>
-						<li><a href="#">Furniture</a></li>
-						<li><a href="#">Home Deco</a></li>
-						<li><a href="#">Dressings</a></li>
-						<li><a href="#">Tables</a></li>
-					</ul>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="amado">
+					<label class="form-check-label" for="amado">Amado</label>
 				</div>
-			</div>
 
-			<div class="widget brands mb-50">
-
-				<h6 class="widget-title mb-30">Brands</h6>
-				<div class="widget-desc">
-
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value=""
-							id="amado"> <label class="form-check-label" for="amado">Amado</label>
-					</div>
-
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="ikea">
-						<label class="form-check-label" for="ikea">Ikea</label>
-					</div>
-
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value=""
-							id="furniture"> <label class="form-check-label"
-							for="furniture">Furniture Inc</label>
-					</div>
-
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value=""
-							id="factory"> <label class="form-check-label"
-							for="factory">The factory</label>
-					</div>
-
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value=""
-							id="artdeco"> <label class="form-check-label"
-							for="artdeco">Artdeco</label>
-					</div>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="ikea">
+					<label class="form-check-label" for="ikea">Ikea</label>
 				</div>
-			</div>
 
-			<div class="widget color mb-50">
-
-				<h6 class="widget-title mb-30">Color</h6>
-				<div class="widget-desc">
-					<ul class="d-flex">
-						<li><a href="#" class="color1"></a></li>
-						<li><a href="#" class="color2"></a></li>
-						<li><a href="#" class="color3"></a></li>
-						<li><a href="#" class="color4"></a></li>
-						<li><a href="#" class="color5"></a></li>
-						<li><a href="#" class="color6"></a></li>
-						<li><a href="#" class="color7"></a></li>
-						<li><a href="#" class="color8"></a></li>
-					</ul>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value=""
+						id="furniture"> <label class="form-check-label"
+						for="furniture">Furniture Inc</label>
 				</div>
-			</div>
 
-			<div class="widget price mb-50">
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value=""
+						id="factory"> <label class="form-check-label"
+						for="factory">The factory</label>
+				</div>
 
-				<h6 class="widget-title mb-30">Price</h6>
-				<div class="widget-desc">
-					<div class="slider-range">
-						<div data-min="10" data-max="1000" data-unit="$"
-							class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
-							data-value-min="10" data-value-max="1000" data-label-result="">
-							<div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-							<span class="ui-slider-handle ui-state-default ui-corner-all"
-								tabindex="0"></span> <span
-								class="ui-slider-handle ui-state-default ui-corner-all"
-								tabindex="0"></span>
-						</div>
-						<div class="range-price">$10 - $1000</div>
-					</div>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value=""
+						id="artdeco"> <label class="form-check-label"
+						for="artdeco">Artdeco</label>
 				</div>
 			</div>
 		</div>
 
-		<div class="amado_product_area section-padding-100">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-12">
-						<div
-							class="product-topbar d-xl-flex align-items-end justify-content-between">
+		<div class="widget color mb-50">
 
-							<div class="total-products">
-								<p>Showing 1-8 0f 25</p>
-								<div class="view d-flex">
-									<a href="#"><i class="fa fa-th-large" aria-hidden="true"></i></a>
-									<a href="#"><i class="fa fa-bars" aria-hidden="true"></i></a>
-								</div>
-							</div>
-
-							<div class="product-sorting d-flex">
-								<div class="sort-by-date d-flex align-items-center mr-15">
-									<p>Sort by</p>
-									<form action="#" method="get">
-										<select name="select" id="sortBydate">
-											<option value="value">Date</option>
-											<option value="value">Newest</option>
-											<option value="value">Popular</option>
-										</select>
-									</form>
-								</div>
-								<div class="view-product d-flex align-items-center">
-									<p>View</p>
-									<form action="#" method="get">
-										<select name="select" id="viewProduct">
-											<option value="value">12</option>
-											<option value="value">24</option>
-											<option value="value">48</option>
-											<option value="value">96</option>
-										</select>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<%
-				List<Product> products = ProductDao.listProduct();
-				if (!products.isEmpty()) {
-					for (Product p : products) {
-				%>
-
-				<div class="row">
-					<div class="col-12 col-sm-6 col-md-12 col-xl-6">
-						<div class="single-product-wrapper">
-							<div class="product-img">
-								<a href="product-details.jsp"> <img
-									src="img/bg-img/<%=p.getImage()%>" alt=""></a>
-							</div>
-
-							<div
-								class="product-description d-flex align-items-center justify-content-between">
-
-								<div class="product-meta-data">
-									<div class="line"></div>
-									<p class="product-price"><%=p.getPrice()%></p>
-									<a href="product-details.jsp">
-										<h6><%=p.getName()%></h6>
-									</a>
-								</div>
-
-
-								<div class="ratings-cart text-right">
-									<div class="ratings">
-										<i class="fa fa-star" aria-hidden="true"></i> <i
-											class="fa fa-star" aria-hidden="true"></i> <i
-											class="fa fa-star" aria-hidden="true"></i> <i
-											class="fa fa-star" aria-hidden="true"></i> <i
-											class="fa fa-star" aria-hidden="true"></i>
-									</div>
-									<div class="cart">
-										<a href="cart.jsp" data-toggle="tooltip" data-placement="left"
-											title="Add to Cart"><img src="img/core-img/cart.png"
-											alt=""></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<%
-				}
-				} else {
-				out.println("There is no proucts");
-				}
-				%>
-
-
-				<!--
-				<div class="col-12 col-sm-6 col-md-12 col-xl-6">
-					<div class="single-product-wrapper">
-
-						<div class="product-img">
-							<img src="img/product-img/product2.jpg" alt=""> <img
-								class="hover-img" src="img/product-img/product3.jpg" alt="">
-						</div>
-
-						<div
-							class="product-description d-flex align-items-center justify-content-between">
-
-							<div class="product-meta-data">
-								<div class="line"></div>
-								<p class="product-price">$180</p>
-								<a href="product-details.html">
-									<h6>Modern Chair</h6>
-								</a>
-							</div>
-
-							<div class="ratings-cart text-right">
-								<div class="ratings">
-									<i class="fa fa-star" aria-hidden="true"></i> <i
-										class="fa fa-star" aria-hidden="true"></i> <i
-										class="fa fa-star" aria-hidden="true"></i> <i
-										class="fa fa-star" aria-hidden="true"></i> <i
-										class="fa fa-star" aria-hidden="true"></i>
-								</div>
-								<div class="cart">
-									<a href="cart.html" data-toggle="tooltip" data-placement="left"
-										title="Add to Cart"><img src="img/core-img/cart.png"
-										alt=""></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-12 col-sm-6 col-md-12 col-xl-6">
-					<div class="single-product-wrapper">
-
-						<div class="product-img">
-							<img src="img/product-img/product3.jpg" alt=""> <img
-								class="hover-img" src="img/product-img/product4.jpg" alt="">
-						</div>
-
-						<div
-							class="product-description d-flex align-items-center justify-content-between">
-
-							<div class="product-meta-data">
-								<div class="line"></div>
-								<p class="product-price">$180</p>
-								<a href="product-details.html">
-									<h6>Modern Chair</h6>
-								</a>
-							</div>
-
-							<div class="ratings-cart text-right">
-								<div class="ratings">
-									<i class="fa fa-star" aria-hidden="true"></i> <i
-										class="fa fa-star" aria-hidden="true"></i> <i
-										class="fa fa-star" aria-hidden="true"></i> <i
-										class="fa fa-star" aria-hidden="true"></i> <i
-										class="fa fa-star" aria-hidden="true"></i>
-								</div>
-								<div class="cart">
-									<a href="cart.html" data-toggle="tooltip" data-placement="left"
-										title="Add to Cart"><img src="img/core-img/cart.png"
-										alt=""></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-12 col-sm-6 col-md-12 col-xl-6">
-					<div class="single-product-wrapper">
-
-						<div class="product-img">
-							<img src="img/product-img/product4.jpg" alt=""> <img
-								class="hover-img" src="img/product-img/product5.jpg" alt="">
-						</div>
-
-						<div
-							class="product-description d-flex align-items-center justify-content-between">
-
-							<div class="product-meta-data">
-								<div class="line"></div>
-								<p class="product-price">$180</p>
-								<a href="product-details.jsp">
-									<h6>Modern Chair</h6>
-								</a>
-							</div>
-
-							<div class="ratings-cart text-right">
-								<div class="ratings">
-									<i class="fa fa-star" aria-hidden="true"></i> <i
-										class="fa fa-star" aria-hidden="true"></i> <i
-										class="fa fa-star" aria-hidden="true"></i> <i
-										class="fa fa-star" aria-hidden="true"></i> <i
-										class="fa fa-star" aria-hidden="true"></i>
-								</div>
-								<div class="cart">
-									<a href="cart.html" data-toggle="tooltip" data-placement="left"
-										title="Add to Cart"><img src="img/core-img/cart.png"
-										alt=""></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-12 col-sm-6 col-md-12 col-xl-6">
-					<div class="single-product-wrapper">
-
-						<div class="product-img">
-							<img src="img/product-img/product5.jpg" alt=""> <img
-								class="hover-img" src="img/product-img/product6.jpg" alt="">
-						</div>
-
-						<div
-							class="product-description d-flex align-items-center justify-content-between">
-
-							<div class="product-meta-data">
-								<div class="line"></div>
-								<p class="product-price">$180</p>
-								<a href="product-details.html">
-									<h6>Modern Chair</h6>
-								</a>
-							</div>
-
-							<div class="ratings-cart text-right">
-								<div class="ratings">
-									<i class="fa fa-star" aria-hidden="true"></i> <i
-										class="fa fa-star" aria-hidden="true"></i> <i
-										class="fa fa-star" aria-hidden="true"></i> <i
-										class="fa fa-star" aria-hidden="true"></i> <i
-										class="fa fa-star" aria-hidden="true"></i>
-								</div>
-								<div class="cart">
-									<a href="cart.html" data-toggle="tooltip" data-placement="left"
-										title="Add to Cart"><img src="img/core-img/cart.png"
-										alt=""></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-12 col-sm-6 col-md-12 col-xl-6">
-					<div class="single-product-wrapper">
-
-						<div class="product-img">
-							<img src="img/product-img/product6.jpg" alt=""> <img
-								class="hover-img" src="img/product-img/product1.jpg" alt="">
-						</div>
-
-						<div
-							class="product-description d-flex align-items-center justify-content-between">
-
-							<div class="product-meta-data">
-								<div class="line"></div>
-								<p class="product-price">$180</p>
-								<a href="product-details.html">
-									<h6>Modern Chair</h6>
-								</a>
-							</div>
-
-							<div class="ratings-cart text-right">
-								<div class="ratings">
-									<i class="fa fa-star" aria-hidden="true"></i> <i
-										class="fa fa-star" aria-hidden="true"></i> <i
-										class="fa fa-star" aria-hidden="true"></i> <i
-										class="fa fa-star" aria-hidden="true"></i> <i
-										class="fa fa-star" aria-hidden="true"></i>
-								</div>
-								<div class="cart">
-									<a href="cart.html" data-toggle="tooltip" data-placement="left"
-										title="Add to Cart"><img src="img/core-img/cart.png"
-										alt=""></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+			<h6 class="widget-title mb-30">Color</h6>
+			<div class="widget-desc">
+				<ul class="d-flex">
+					<li><a href="#" class="color1"></a></li>
+					<li><a href="#" class="color2"></a></li>
+					<li><a href="#" class="color3"></a></li>
+					<li><a href="#" class="color4"></a></li>
+					<li><a href="#" class="color5"></a></li>
+					<li><a href="#" class="color6"></a></li>
+					<li><a href="#" class="color7"></a></li>
+					<li><a href="#" class="color8"></a></li>
+				</ul>
 			</div>
-			<div class="row">
-				<div class="col-12">
+		</div>
 
-					<nav aria-label="navigation">
-						<ul class="pagination justify-content-end mt-50">
-							<li class="page-item active"><a class="page-link" href="#">01.</a></li>
-							<li class="page-item"><a class="page-link" href="#">02.</a></li>
-							<li class="page-item"><a class="page-link" href="#">03.</a></li>
-							<li class="page-item"><a class="page-link" href="#">04.</a></li>
-						</ul>
-					</nav>
+		<div class="widget price mb-50">
+
+			<h6 class="widget-title mb-30">Price</h6>
+			<div class="widget-desc">
+				<div class="slider-range">
+					<div data-min="10" data-max="1000" data-unit="$"
+						class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+						data-value-min="10" data-value-max="1000" data-label-result="">
+						<div class="ui-slider-range ui-widget-header ui-corner-all"></div>
+						<span class="ui-slider-handle ui-state-default ui-corner-all"
+							tabindex="0"></span> <span
+							class="ui-slider-handle ui-state-default ui-corner-all"
+							tabindex="0"></span>
+					</div>
+					<div class="range-price">$10 - $1000</div>
 				</div>
-				-->
 			</div>
 		</div>
 	</div>
 
+	<div class="amado_product_area section-padding-100">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<div
+						class="product-topbar d-xl-flex align-items-end justify-content-between">
 
-	<section class="newsletter-area section-padding-100-0">
-		<div class="container">
-			<div class="row align-items-center">
+						<div class="total-products">
+							<p>Showing 1-8 0f 25</p>
+							<div class="view d-flex">
+								<a href="#"><i class="fa fa-th-large" aria-hidden="true"></i></a>
+								<a href="#"><i class="fa fa-bars" aria-hidden="true"></i></a>
+							</div>
+						</div>
 
-				<div class="col-12 col-lg-6 col-xl-7">
-					<div class="newsletter-text mb-100">
-						<h2>
-							Subscribe for a <span>25% Discount</span>
-						</h2>
-						<p>Nulla ac convallis lorem, eget euismod nisl. Donec in
-							libero sit amet mi vulputate consectetur. Donec auctor interdum
-							purus, ac finibus massa bibendum nec.</p>
-					</div>
-				</div>
-
-				<div class="col-12 col-lg-6 col-xl-5">
-					<div class="newsletter-form mb-100">
-						<form action="#" method="post">
-							<input type="email" name="email" class="nl-email"
-								placeholder="Your E-mail"> <input type="submit"
-								value="Subscribe">
-						</form>
+						<div class="product-sorting d-flex">
+							<div class="sort-by-date d-flex align-items-center mr-15">
+								<p>Sort by</p>
+								<form action="#" method="get">
+									<select name="select" id="sortBydate">
+										<option value="value">Date</option>
+										<option value="value">Newest</option>
+										<option value="value">Popular</option>
+									</select>
+								</form>
+							</div>
+							<div class="view-product d-flex align-items-center">
+								<p>View</p>
+								<form action="#" method="get">
+									<select name="select" id="viewProduct">
+										<option value="value">12</option>
+										<option value="value">24</option>
+										<option value="value">48</option>
+										<option value="value">96</option>
+									</select>
+								</form>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+			<%
+			List<Product> products = ProductDao.listProduct();
+			if (!products.isEmpty()) {
+				for (Product p : products) {
+			%>
 
-
-	<footer class="footer_area clearfix">
-		<div class="container">
-			<div class="row align-items-center">
-
-				<div class="col-12 col-lg-4">
-					<div class="single_widget_area">
-
-						<div class="footer-logo mr-50">
-							<a href="index.jsp"><img src="img/core-img/logo2.png" alt=""></a>
+			<div class="row">
+				<div class="col-12 col-sm-6 col-md-12 col-xl-6">
+					<div class="single-product-wrapper">
+						<div class="product-img">
+							<a href="product-details.jsp"> <img
+								src="img/bg-img/<%=p.getImage()%>" alt=""></a>
 						</div>
 
-						<p class="copywrite">
-							Copyright &copy;
-							<script>document.write(new Date().getFullYear());</script>
-							All rights reserved | This template is made with <i
-								class="fa fa-heart-o" aria-hidden="true"></i> by <a
-								href="https://colorlib.com/" target="_blank">Colorlib</a>
-						</p>
-					</div>
-				</div>
+						<div
+							class="product-description d-flex align-items-center justify-content-between">
 
-				<div class="col-12 col-lg-8">
-					<div class="single_widget_area">
+							<div class="product-meta-data">
+								<div class="line"></div>
+								<p class="product-price"><%=p.getPrice()%></p>
+								<a href="product-details.jsp">
+									<h6><%=p.getName()%></h6>
+								</a>
+							</div>
 
-						<div class="footer_menu">
-							<nav class="navbar navbar-expand-lg justify-content-end">
-								<button class="navbar-toggler" type="button"
-									data-toggle="collapse" data-target="#footerNavContent"
-									aria-controls="footerNavContent" aria-expanded="false"
-									aria-label="Toggle navigation">
-									<i class="fa fa-bars"></i>
-								</button>
-								<div class="collapse navbar-collapse" id="footerNavContent">
-									<ul class="navbar-nav ml-auto">
-										<li class="nav-item active"><a class="nav-link"
-											href="index.jsp">Home</a></li>
-										<li class="nav-item"><a class="nav-link" href="shop.jsp">Shop</a></li>
-										<li class="nav-item"><a class="nav-link"
-											href="product-details.jsp">Product</a></li>
-										<li class="nav-item"><a class="nav-link" href="cart.jsp">Cart</a></li>
-										<li class="nav-item"><a class="nav-link"
-											href="checkout.jsp">Checkout</a></li>
-										<li class="nav-item"><a class="nav-link"
-											href="profile.jsp">Profile</a></li>
-									</ul>
+
+							<div class="ratings-cart text-right">
+								<div class="ratings">
+									<i class="fa fa-star" aria-hidden="true"></i> <i
+										class="fa fa-star" aria-hidden="true"></i> <i
+										class="fa fa-star" aria-hidden="true"></i> <i
+										class="fa fa-star" aria-hidden="true"></i> <i
+										class="fa fa-star" aria-hidden="true"></i>
 								</div>
-							</nav>
+								<div class="cart">
+									<a href="addtoCartController?id=<%=p.getId()%>"
+										data-toggle="tooltip" data-placement="left"
+										title="Add to Cart"><img src="img/core-img/cart.png"
+										alt=""></a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</footer>
 
+			<%
+			}
+			} else {
+			out.println("There is no proucts");
+			}
+			%>
+
+
+
+		</div>
+	</div>
+
+	<%@include file="/includes/section.jsp"%>
 
 
 	<script src="js/jquery/jquery-2.2.4.min.js"></script>

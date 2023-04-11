@@ -24,12 +24,14 @@ public class User {
 
 	@Column(name = "password")
 	private String password;
+	
+	@Column(name = "profile")
+	private String profile;
 
 	public User() {
 	}
 
 	public User(String name, String contact, String email, String password) {
-		super();
 		this.name = name;
 		this.contact = contact;
 		this.email = email;
@@ -52,13 +54,22 @@ public class User {
 		this.id = id;
 	}
 
-	public User(int id, String name, String contact, String email, String password) {
+	public User(int id, String name, String contact, String email, String password,String profile) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.contact = contact;
 		this.email = email;
 		this.password = password;
+		this.profile=profile;
+	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
 
 	public String getContact() {
@@ -88,7 +99,8 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", contact=" + contact + ", email=" + email + ", password="
-				+ password + "]";
+				+ password + ", profile=" + profile + "]";
 	}
 
+	
 }
