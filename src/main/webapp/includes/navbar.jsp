@@ -57,8 +57,9 @@
 				<ul>
 					<li class="active"><a href="index.jsp">Home</a></li>
 					<li><a href="shop.jsp">Shop</a></li>
-					<li><a href="product-details.jsp">Product</a></li>
-					<li><a href="cart.jsp">Cart<span class="badge badge-danger">${cart_list.size()}</span></a></li>
+					<li><a href="cart.jsp">Cart <span
+							class="badge badge-danger"> ${ cart_list.size()}</span></a></li>
+
 					<%
 					if (auth != null) {
 					%>
@@ -86,9 +87,10 @@
 
 			<div class="cart-fav-search mb-100">
 				<a href="cart.jsp" class="cart-nav"><img
-					src="img/core-img/cart.png" alt=""> Cart <span class="badge badge-danger">${cart_list.size()}</span></a> <a
-					href="#" class="fav-nav"><img src="img/core-img/favorites.png"
-					alt=""> Favourite</a> <a href="#" class="search-nav"><img
+					src="img/core-img/cart.png" alt=""> Cart <span
+					class="badge badge-danger">${cart_list.size()}</span></a> <a href="#"
+					class="fav-nav"><img src="img/core-img/favorites.png" alt="">
+					Favourite</a> <a href="#" class="search-nav"><img
 					src="img/core-img/search.png" alt=""> Search</a>
 			</div>
 		</header>

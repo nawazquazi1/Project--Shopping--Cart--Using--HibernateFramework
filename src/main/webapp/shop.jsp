@@ -2,6 +2,8 @@
 <%@page import="org.project.DAO.*"%>
 <%@page import="org.project.entities.*"%>
 <%@page import="java.util.*"%>
+<%@page import="org.connection.*"%>
+
 <%
 User auth = (User) request.getSession().getAttribute("auth");
 ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
@@ -25,6 +27,11 @@ if (cart_list != null) {
 
 <link rel="stylesheet" href="css/core-style.css">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
 <script nonce="ee93e746-554d-4637-bfaa-7353e28ba846">(function(w,d){!function(bv,bw,bx,by){bv[bx]=bv[bx]||{};bv[bx].executed=[];bv.zaraz={deferred:[],listeners:[]};bv.zaraz.q=[];bv.zaraz._f=function(bz){return function(){var bA=Array.prototype.slice.call(arguments);bv.zaraz.q.push({m:bz,a:bA})}};for(const bB of["track","set","debug"])bv.zaraz[bB]=bv.zaraz._f(bB);bv.zaraz.init=()=>{var bC=bw.getElementsByTagName(by)[0],bD=bw.createElement(by),bE=bw.getElementsByTagName("title")[0];bE&&(bv[bx].t=bw.getElementsByTagName("title")[0].text);bv[bx].x=Math.random();bv[bx].w=bv.screen.width;bv[bx].h=bv.screen.height;bv[bx].j=bv.innerHeight;bv[bx].e=bv.innerWidth;bv[bx].l=bv.location.href;bv[bx].r=bw.referrer;bv[bx].k=bv.screen.colorDepth;bv[bx].n=bw.characterSet;bv[bx].o=(new Date).getTimezoneOffset();if(bv.dataLayer)for(const bI of Object.entries(Object.entries(dataLayer).reduce(((bJ,bK)=>({...bJ[1],...bK[1]})))))zaraz.set(bI[0],bI[1],{scope:"page"});bv[bx].q=[];for(;bv.zaraz.q.length;){const bL=bv.zaraz.q.shift();bv[bx].q.push(bL)}bD.defer=!0;for(const bM of[localStorage,sessionStorage])Object.keys(bM||{}).filter((bO=>bO.startsWith("_zaraz_"))).forEach((bN=>{try{bv[bx]["z_"+bN.slice(7)]=JSON.parse(bM.getItem(bN))}catch{bv[bx]["z_"+bN.slice(7)]=bM.getItem(bN)}}));bD.referrerPolicy="origin";bD.src="../../cdn-cgi/zaraz/sd0d9.js?z="+btoa(encodeURIComponent(JSON.stringify(bv[bx])));bC.parentNode.insertBefore(bD,bC)};["complete","interactive"].includes(bw.readyState)?zaraz.init():bv.addEventListener("DOMContentLoaded",zaraz.init)}(w,d,"zarazData","script");})(window,document);</script>
 </head>
 <body>
@@ -39,15 +46,18 @@ if (cart_list != null) {
 			<h6 class="widget-title mb-30">Catagories</h6>
 
 			<div class="catagories-menu">
+				<%
+				ProductDao Dao = new ProductDao(DbConnection.getConnection());
+
+				List<Product> list1 = Dao.getAllProduct();
+				for (Product cc : list1) {
+				%>
 				<ul>
-					<li class="active"><a href="#">Chairs</a></li>
-					<li><a href="#">Beds</a></li>
-					<li><a href="#">Accesories</a></li>
-					<li><a href="#">Furniture</a></li>
-					<li><a href="#">Home Deco</a></li>
-					<li><a href="#">Dressings</a></li>
-					<li><a href="#">Tables</a></li>
+					<li><a href="#"><%=cc.getName()%></a></li>
 				</ul>
+				<%
+				}
+				%>
 			</div>
 		</div>
 
@@ -174,7 +184,7 @@ if (cart_list != null) {
 				<div class="col-12 col-sm-6 col-md-12 col-xl-6">
 					<div class="single-product-wrapper">
 						<div class="product-img">
-							<a href="product-details.jsp"> <img
+							<a href="product-details.jsp?id=<%=p.getId()%>"> <img
 								src="img/bg-img/<%=p.getImage()%>" alt=""></a>
 						</div>
 

@@ -2,15 +2,16 @@
 <%@page import="org.project.DAO.*"%>
 <%@page import="org.project.entities.*"%>
 <%@page import="java.util.*"%>
+<%@page import="org.connection.*"%>
 
 <%
 User auth = (User) request.getSession().getAttribute("auth");
 ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
 List<Cart> cartProduct = null;
 if (cart_list != null) {
-	ProductDao Dao = new ProductDao();
-	cartProduct = Dao.getCartProducts(cart_list);
-	double total = Dao.getTotalCartPrice(cart_list);
+	ProductDao pDao = new ProductDao(DbConnection.getConnection());
+	cartProduct = pDao.getCartProducts(cart_list);
+	double total = pDao.getTotalCartPrice(cart_list);
 	request.setAttribute("total", total);
 	request.setAttribute("cart_list", cart_list);
 }

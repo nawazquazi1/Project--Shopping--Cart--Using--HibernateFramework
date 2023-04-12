@@ -45,7 +45,7 @@
 					<div class="single_widget_area">
 
 						<div class="footer-logo mr-50">
-							<a href="index.jsp"><img src="img/core-img/logo2.png" alt=""></a>
+							<a href="index.jsp"><img src="img/core-img/logo.png" alt=""></a>
 						</div>
 
 						<p class="copywrite">
@@ -60,7 +60,7 @@
 					</div>
 				</div>
 
-				<div class="col-12 col-lg-8">
+				<div class="col-12 col-lg-8 ">
 					<div class="single_widget_area">
 
 						<div class="footer_menu">
