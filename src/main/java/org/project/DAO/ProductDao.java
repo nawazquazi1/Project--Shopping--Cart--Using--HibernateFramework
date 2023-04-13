@@ -16,7 +16,6 @@ import org.hibernate.cfg.Configuration;
 import org.project.entities.Cart;
 import org.project.entities.Product;
 
-
 public class ProductDao {
 	static SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Product.class)
 			.buildSessionFactory();
@@ -149,13 +148,13 @@ public class ProductDao {
 		return list;
 	}
 
-	public List<Product> getAllProduct() {
+	public List<Product> getAllCategory() {
 
 		List<Product> list = new ArrayList<>();
 		// fetch all the post
 		try {
 
-			PreparedStatement p = con.prepareStatement("SELECT DISTINCT name,categories ,FROM products");
+			PreparedStatement p = con.prepareStatement("SELECT * FROM products");
 
 			ResultSet set = p.executeQuery();
 

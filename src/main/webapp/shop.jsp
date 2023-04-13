@@ -47,15 +47,15 @@ if (cart_list != null) {
 
 			<div class="catagories-menu">
 				<%
-				ProductDao Dao = new ProductDao(DbConnection.getConnection());
-
-				List<Product> list1 = Dao.getAllProduct();
-				for (Product cc : list1) {
+				List<Product> products = ProductDao.listProduct();
+				if (!products.isEmpty()) {
+					for (Product p : products) {
 				%>
 				<ul>
-					<li><a href="#"><%=cc.getName()%></a></li>
+					<li><a href="#"><%=p.getCategory()%></a></li>
 				</ul>
 				<%
+				}
 				}
 				%>
 			</div>
@@ -175,9 +175,9 @@ if (cart_list != null) {
 				</div>
 			</div>
 			<%
-			List<Product> products = ProductDao.listProduct();
+			List<Product> product = ProductDao.listProduct();
 			if (!products.isEmpty()) {
-				for (Product p : products) {
+				for (Product p : product) {
 			%>
 
 			<div class="row">
@@ -194,7 +194,7 @@ if (cart_list != null) {
 							<div class="product-meta-data">
 								<div class="line"></div>
 								<p class="product-price"><%=p.getPrice()%></p>
-								<a href="product-details.jsp">
+								<a href="product-details.jsp?id=<%=p.getId()%>">
 									<h6><%=p.getName()%></h6>
 								</a>
 							</div>
